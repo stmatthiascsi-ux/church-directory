@@ -78,7 +78,7 @@ function showFamily(fid) {
 
             <p><strong>${relationship(member.Relationship)}</strong></p>
 
-            <p>🎂 ${member.DOB || "-"}</p>
+        <p>🎂 ${formatDate(member.DOB)}</p>
 
             <p>📞 ${member.Phone || "-"}</p>
 
@@ -144,7 +144,7 @@ function showAnniversaries() {
             html += `
             <div class="card">
                 <h3>${member.MemberName}</h3>
-                <p>${member["Wedding Anniversary"]}</p>
+                <p>${formatDate(member["Wedding Anniversary"])}</p>
             </div>
             `;
 
@@ -153,5 +153,20 @@ function showAnniversaries() {
     });
 
     document.getElementById("content").innerHTML = html;
+
+}
+function formatDate(dateValue) {
+
+    if (!dateValue) return "-";
+
+    let date = new Date(dateValue);
+
+    if (isNaN(date)) return dateValue;
+
+    return date.toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric"
+    });
 
 }
