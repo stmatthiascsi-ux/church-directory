@@ -1,38 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>St. Matthias CSI Church Directory</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="css/style.css">
+<title>St. Matthias CSI Church Directory</title>
 
-    <link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="css/style.css">
 
-    <meta name="theme-color" content="#0D47A1">
+<link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#0D47A1">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 
-<header class="header">
-    <img src="assets/church.jpg" class="church-image">
+<header>
 
-    <h1>St. Matthias CSI Church</h1>
+<img src="assets/church.jpg" class="banner">
 
-    <p>Kidangannoor</p>
-</header>
+<div class="overlay">
 
-<div class="search-box">
+<h1>St. Matthias CSI Church</h1>
 
-<input
-type="text"
-id="search"
-placeholder="Search Member..."
-onkeyup="searchMember()">
+<p>Kidangannoor</p>
 
 </div>
 
-<div id="memberList">
+</header>
+
+<div class="searchBox">
+
+<input
+type="text"
+id="searchInput"
+placeholder="🔍 Search Member or Family">
+
+</div>
+
+<div class="menu">
+
+<button id="directoryBtn">
+
+👨‍👩‍👧 Families
+
+</button>
+
+<button id="birthdayBtn">
+
+🎂 Birthdays
+
+</button>
+
+<button id="anniversaryBtn">
+
+💍 Anniversaries
+
+</button>
+
+</div>
+
+<div id="content">
 
 </div>
 
