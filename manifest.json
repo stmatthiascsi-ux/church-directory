@@ -1,0 +1,10 @@
+{
+  "name": "St. Matthias CSI Church Directory",
+  "short_name": "St. Matthias",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0D47A1",
+  "orientation": "portrait",
+  "icons": []
+}
