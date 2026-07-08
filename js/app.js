@@ -6,44 +6,11 @@ async function loadMembers() {
     try {
         const response = await fetch(API_URL);
         members = await response.json();
-
-        console.log(members);
-
+        console.log("Members loaded:", members);
     } catch (err) {
+        console.error(err);
         alert("Unable to load church directory.");
-        console.log(err);
     }
 }
 
 loadMembers();
-
-document.getElementById("directoryBtn").addEventListener("click", showFamilies);
-
-function showFamilies(){
-
-    let familyMap = {};
-
-    members.forEach(member => {
-
-        if(!familyMap[member.FamilyID]){
-            familyMap[member.FamilyID]=member;
-        }
-
-    });
-
-    let html="";
-
-    Object.values(familyMap).forEach(family=>{
-
-        html += `
-        <div class="card">
-            <h3>${family.FamilyName}</h3>
-            <p>${family.Address}</p>
-        </div>
-        `;
-
-    });
-
-    document.getElementById("content").innerHTML = html;
-
-}
