@@ -112,16 +112,42 @@ function relationship(code) {
 
 function showBirthdays() {
 
-    let html = "<h2>Birthdays</h2>";
+    const today = new Date();
+    const thisMonth = today.getMonth();
+
+    let todayHTML = "";
+    let monthHTML = "";
 
     members.forEach(member => {
 
-        if (member.DOB) {
+        if (!member.DOB) return;
 
-            html += `
+        let dob = new Date(member.DOB);
+
+        if (isNaN(dob)) return;
+
+        if (
+            dob.getDate() === today.getDate() &&
+            dob.getMonth() === today.getMonth()
+        ) {
+
+            todayHTML += `
+            <div class="card">
+                <h3>🎉 ${member.MemberName}</h3>
+                <p>${relationship(member.Relationship)}</p>
+                <p>🎂 ${formatDate(member.DOB)}</p>
+            </div>
+            `;
+
+        }
+
+        if (dob.getMonth() === thisMonth) {
+
+            monthHTML += `
             <div class="card">
                 <h3>${member.MemberName}</h3>
-                <p>${member.DOB}</p>
+                <p>${relationship(member.Relationship)}</p>
+                <p>🎂 ${formatDate(member.DOB)}</p>
             </div>
             `;
 
@@ -129,7 +155,29 @@ function showBirthdays() {
 
     });
 
-    document.getElementById("content").innerHTML = html;
+    if (todayHTML === "") {
+        todayHTML = `
+        <div class="card">
+            <p>No birthdays today.</p>
+        </div>`;
+    }
+
+    if (monthHTML === "") {
+        monthHTML = `
+        <div class="card">
+            <p>No birthdays this month.</p>
+        </div>`;
+    }
+
+    document.getElementById("content").innerHTML = `
+        <h2>🎂 Today's Birthdays</h2>
+        ${todayHTML}
+
+        <br>
+
+        <h2>🎉 This Month's Birthdays</h2>
+        ${monthHTML}
+    `;
 
 }
 
@@ -166,6 +214,21 @@ function formatDate(dateValue) {
     return date.toLocaleDateString("en-IN", {
         day: "2-digit",
         month: "long",
+        year: "numeric"
+    });
+
+}
+function formatDate(dateValue) {
+
+    if (!dateValue) return "-";
+
+    let date = new Date(dateValue);
+
+    if (isNaN(date)) return "-";
+
+    return date.toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "short",
         year: "numeric"
     });
 
